@@ -1,0 +1,10 @@
+Week of 14 May 2026
+-------------------
+Created the Nile project from scratch — Node.js backend, React frontend, SQLite database.
+Built full auth flow: register, login, JWT middleware, protected routes.
+Built posts API: create, delete, like toggle, comment add and delete.
+Built all frontend pages: Home, Sign In, Register, Feed, Profile.
+Set up GitHub repo, pushed all code, opened 3 issues for teammates.
+Wrote backend unit tests (supertest) and a Playwright E2E suite covering 10 flows.
+All tests pass locally; app runs with two commands — no Docker, no cloud needed.
+
