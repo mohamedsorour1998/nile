@@ -22,7 +22,11 @@ const SignIn = () => {
         saveAuth(res.data.token, res.data.userId);
         navigate('/feed');
       } catch (err) {
-        setError(err.response?.data?.error || 'Login failed');
+        if (!err.response) {
+          setError('Cannot reach the server. Make sure the backend is running on port 5000.');
+        } else {
+          setError(err.response.data?.error || 'Login failed');
+        }
       }
     },
   });
