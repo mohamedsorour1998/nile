@@ -1,5 +1,4 @@
 node_modules/
-.env
 nile-backend/db/nile.db
 nile-backend/db/nile.db-shm
 nile-backend/db/nile.db-wal
