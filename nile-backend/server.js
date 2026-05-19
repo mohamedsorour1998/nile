@@ -1,8 +1,14 @@
 const express = require('express');
 const cors    = require('cors');
 const dotenv  = require('dotenv');
+const path    = require('path');
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, '.env') });
+
+if (!process.env.JWT_SECRET) {
+  console.error('ERROR: JWT_SECRET is not set. Copy nile-backend/.env.example to nile-backend/.env and fill it in.');
+  process.exit(1);
+}
 
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
