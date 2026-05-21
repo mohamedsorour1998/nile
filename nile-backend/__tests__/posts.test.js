@@ -22,11 +22,12 @@ describe('GET /api/posts', () => {
     expect(res.status).toBe(401);
   });
 
-  it('returns an array', async () => {
+  it('returns posts array with hasMore', async () => {
     const res = await request(app).get('/api/posts')
       .set('Authorization', `Bearer ${token}`);
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
+    expect(Array.isArray(res.body.posts)).toBe(true);
+    expect(typeof res.body.hasMore).toBe('boolean');
   });
 });
 
