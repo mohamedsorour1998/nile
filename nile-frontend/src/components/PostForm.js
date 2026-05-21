@@ -6,10 +6,11 @@ import api from '../services/api';
 
 const PostForm = ({ onPostCreated }) => {
   const formik = useFormik({
-    initialValues: { title: '', content: '' },
+    initialValues: { title: '', content: '', image_url: '', tags: '' },
     validationSchema: Yup.object({
-      title:   Yup.string().min(3).max(150).required('Required'),
-      content: Yup.string().max(500),
+      title:     Yup.string().min(3).max(150).required('Required'),
+      content:   Yup.string().max(500),
+      image_url: Yup.string().url('Must be a valid URL').optional(),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
@@ -40,8 +41,27 @@ const PostForm = ({ onPostCreated }) => {
             as="textarea"
             name="content"
             rows={3}
+            placeholder="What's on your mind?"
             onChange={formik.handleChange}
             value={formik.values.content}
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Control
+            name="image_url"
+            placeholder="Image URL (optional)"
+            onChange={formik.handleChange}
+            value={formik.values.image_url}
+            isInvalid={!!formik.errors.image_url}
+          />
+          <Form.Control.Feedback type="invalid">{formik.errors.image_url}</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Control
+            name="tags"
+            placeholder="Tags: Tech, Fun, News"
+            onChange={formik.handleChange}
+            value={formik.values.tags}
           />
         </Form.Group>
         <Button type="submit" size="sm">Post</Button>
