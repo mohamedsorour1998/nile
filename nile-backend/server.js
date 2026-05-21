@@ -10,18 +10,22 @@ if (!process.env.JWT_SECRET) {
   process.exit(1);
 }
 
-const authRoutes = require('./routes/auth');
-const postRoutes = require('./routes/post');
-const userRoutes = require('./routes/user');
+const authRoutes         = require('./routes/auth');
+const postRoutes         = require('./routes/post');
+const userRoutes         = require('./routes/user');
+const bookmarkRoutes     = require('./routes/bookmark');
+const notificationRoutes = require('./routes/notification');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth',  authRoutes);
-app.use('/api/posts', postRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/auth',          authRoutes);
+app.use('/api/posts',         postRoutes);
+app.use('/api/users',         userRoutes);
+app.use('/api/bookmarks',     bookmarkRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 if (require.main === module) {
   const PORT = process.env.PORT || 5000;
